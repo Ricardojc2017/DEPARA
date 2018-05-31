@@ -4,40 +4,62 @@ $(document).ready(function(){
 
 	//exibirMensagem($(objForm).find("div.mensagem"), true,"");
 
-    $("#btnCadastrar").click(function(){
-
+    $("#btnCadastrar").click(function(event){
+		event.preventDefault();
         var objForm = $( "#formCadastrar" );
-            
-        $.post("xt_cadastrar.php", objForm.serialize(), function(data, status){
+
+		
+
+	$.ajax({
+		type: 'POST',
+		url: 'xt_cadastrar.php',
+		data: objForm.serialize(),
+		success: function(data){
+		//console.log("sucesso")
+		alert('salvo com sucesso !!');
+		
+
+		},
+		error: function(xhr, textStatus, error){
+
+			console.log("error")
+			alert('Houve um erro ,atualize a página !!')
+
+		}
+	});
+  
+
+  
+        //$.post("xt_cadastrar5.php", objForm.serialize(), function(data, status){
             
             // alert("Data: " + data + "\nStatus: " + status);
 		   //alert('Cadastrado com sucesso'); 
 		 //  console.log('cadastra com sucesso !!'); 
 		//Processando a resposta
+		//console.log("dwdwd");
+
+          console.log(status);
 
 
+	//	var mensagem = "";
+	//	var resposta = false;
 
+	//	if(status !="success") mensagem = "Ocorreu um erro de comunicacao com o servidor.Por gentileza tente novamente .";
 
-
-		var mensagem = "";
-		var resposta = false;
-
-		if(status !="success") mensagem = "Ocorreu um erro de comunicacao com o servidor.Por gentileza tente novamente .";
-
-		else{
-		  mensagem = data.mensagem;
+		//else{
+		//  mensagem = data.mensagem;
 		  
-		 if(data.resposta) resposta = true;
+		// if(data.resposta) resposta = true;
 
-		}
+		//}
 
-		exibirMensagem($(objForm).find("div.mensagem"), resposta, mensagem);
+		//exibirMensagem($(objForm).find("div.mensagem"), resposta, mensagem);
 		
-		if (resposta && res.location.length > 0) location.href = res.location;
+		//if (resposta && res.location.length > 0) location.href = res.location;
 
-        if (resposta) $(objForm).get(0).reset();
+       // if (resposta) $(objForm).get(0).reset();
 
-	      },"json");
+	     //,"json");
            
 		});
 	
@@ -45,6 +67,8 @@ $(document).ready(function(){
 		return false;
 
 	});
+	
+
 	
 
 

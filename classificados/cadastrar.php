@@ -348,9 +348,7 @@ if(texto != '' ) {
 	$('input#btnCadastrar').bind('click', function() {     
       
 
-        alert('salvo com sucesso !!');
-
-        console.log('entrou !!');
+    
 
 
 
